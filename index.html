@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eliana._crochet.love | חנות סריגה</title>
+    <!-- חיבור הלוגו ללשונית הדפדפן -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    
+    <style>
+        /* עיצוב כללי בסגנון נקי ומודרני - ורוד ולבן */
+        :root {
+            --main-pink: #ffb7c5;
+            --light-pink: #ffeef1;
+            --dark-pink: #d88a99;
+            --text-color: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid var(--light-pink);
+            text-align: center;
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(255, 183, 197, 0.15);
+        }
+
+        /* עיצוב הלוגו החדש בראש האתר */
+        .header-logo {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--main-pink);
+            margin-bottom: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            color: var(--dark-pink);
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 0.3rem 0 0 0;
+            font-size: 1rem;
+            color: #888;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* גריד להצגת המוצרים */
+        .products-grid {
+            text-align: center;
+        }
+
+        .product-card {
+            display: inline-block;
+            background: #fff;
+            border: 1px solid var(--light-pink);
+            border-radius: 12px;
+            width: 280px;
+            margin: 15px;
+            vertical-align: top;
+            text-align: right;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--main-pink);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background-color: var(--light-pink);
+            object-fit: contain;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin: 0 0 0.5rem 0;
+            color: #333;
+            min-height: 2.4rem;
+        }
+
+        .product-price {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--dark-pink);
+            margin-bottom: 1rem;
+        }
+
+        /* עיצוב הטופס בתוך כרטיס המוצר */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        select, input[type="number"], textarea, input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid var(--light-pink);
+            border-radius: 6px;
+            background-color: #fff;
+            box-sizing: border-box;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            font-family: inherit;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--main-pink);
+        }
+
+        textarea {
+            resize: none;
+            height: 60px;
+        }
+
+        .btn-order {
+            background-color: var(--main-pink);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-order:hover {
+            background-color: var(--dark-pink);
+        }
+
+        /* עיצוב אזור סל הקניות */
+        .cart-section {
+            background: #fff;
+            border: 2px dashed var(--main-pink);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 4rem;
+            box-shadow: 0 4px 20px rgba(255, 183, 197, 0.1);
+            text-align: right;
+        }
+
+        .cart-section h2 {
+            color: var(--dark-pink);
+            margin-top: 0;
+            border-bottom: 1px solid var(--light-pink);
+            padding-bottom: 0.5rem;
+        }
+
+        .payment-notice {
+            background-color: var(--light-pink);
+            border-right: 4px solid var(--dark-pink);
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-pink);
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-meta {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 0.2rem;
+        }
+
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-qty {
+            background: var(--light-pink);
+            border: 1px solid var(--main-pink);
+            color: var(--dark-pink);
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-qty:hover {
+            background: var(--main-pink);
+            color: white;
+        }
+
+        .btn-remove {
+            background: #ffcbd1;
+            border: none;
+            color: #c0392b;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .cart-total {
+            text-align: left;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark-pink);
+            margin: 1.5rem 0;
+        }
+
+        .checkout-form {
+            max-width: 500px;
+            margin: 2rem 0 0 auto;
+        }
+
+        .empty-cart-msg {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            background-color: var(--light-pink);
+            color: var(--dark-pink);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- תמונת הלוגו המרכזית בראש העמוד -->
+        <img src="logo.jpg" alt="eliana._crochet.love לוגו" class="header-logo">
+        <h1>eliana._crochet.love</h1>
+        <p>פריטי סריגה מעוצבים בעבודת יד ובהתאמה אישית מושלמת</p>
+    </header>
+
+    <div class="container">
+        <div class="products-grid">
+
+            <!-- מוצר 1 -->
+            <div class="product-card" data-id="1" data-name="מחזיק מפתחות לב" data-price="25">
+                <img src="item1.jpg" alt="מחזיק מפתחות לב" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">1. מחזיק מפתחות לב</h2>
+                    <div class="product-price">₪25.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: להוסיף פפיון, לשנות צבע אלמנט מסוים..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 2 -->
+            <div class="product-card" data-id="2" data-name="כרית לב קטנה" data-price="60">
+                <img src="item2.jpg" alt="כרית לב קטנה" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">2. כרית לב קטנה</h2>
+                    <div class="product-price">₪60.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: לשנות צבע, להוסיף אלמנט..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 3 -->
+            <div class="product-card" data-id="3" data-name="כרית לב בינונית" data-price="80">
+                <img src="item3.jpg" alt="כרית לב בינונית" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">3. כרית לב בינונית</h2>
+                    <div class="product-price">₪80.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: לשנות צבע, להוסיף אלמנט..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 4 -->
+            <div class="product-card" data-id="4" data-name="כרית לב גדולה" data-price="100">
+                <img src="item4.jpg" alt="כרית לב גדולה" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">4. כרית לב גדולה</h2>
+                    <div class="product-price">₪100.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: לשנות צבע, להוסיף אלמנט..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 5 -->
+            <div class="product-card" data-id="5" data-name="פרח עט" data-price="35">
+                <img src="item5.jpg" alt="פרח עט" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">5. פרח עט</h2>
+                    <div class="product-price">₪35.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: לשנות צבע, אלמנט מסוים..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 6 -->
+            <div class="product-card" data-id="6" data-name="תחתית לכוסות" data-price="10">
+                <img src="item6.jpg" alt="תחתית לכוסות" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">6. תחתית לכוסות (ליחידה)</h2>
+                    <div class="product-price">₪10.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: לשנות צבע, לעשות דוגמה מיוחדת..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 7 -->
+            <div class="product-card" data-id="7" data-name="דובי סרוג חמוד" data-price="70">
+                <img src="item7.jpg" alt="דובי" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">7. דובי סרוג חמוד</h2>
+                    <div class="product-price">₪70.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: להוסיף פפיון, לשנות צבע של הצעיף..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 8 -->
+            <div class="product-card" data-id="8" data-name="בובת ארנב אוזניים למעלה" data-price="80">
+                <img src="item8.jpg" alt="בובת ארנב אוזניים למעלה" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">8. בובת ארנב אוזניים למעלה</h2>
+                    <div class="product-price">₪80.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: להוסיף פפיון, לשנות צבע אלמנט מסוים..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 9 -->
+            <div class="product-card" data-id="9" data-name="בובת ארנב אוזניים מלמטה מחזיק לב" data-price="100">
+                <img src="item9.jpg" alt="בובת ארנב אוזניים מלמטה מחזיק לב" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">9. בובת ארנב אוזניים מלמטה מחזיק לב</h2>
+                    <div class="product-price">₪100.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: להוסיף פפיון, לשנות צבע של הלב..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 10 -->
+            <div class="product-card" data-id="10" data-name="בובת חתול" data-price="90">
+                <img src="item10.jpg" alt="בובת חתול" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">10. בובת חתול</h2>
+                    <div class="product-price">₪90.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: להוסיף פפיון, לשנות צבע אלמנט מסוים..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 11 -->
+            <div class="product-card" data-id="11" data-name="בובת כלב סנופי" data-price="120">
+                <img src="item11.jpg" alt="בובת כלב סנופי" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">11. בובת כלב סנופי</h2>
+                    <div class="product-price">₪120.00</div>
+                    <div class="form-group">
+                        <label>בקשות מיוחדות לעיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="לדוגמה: להוסיף פפיון או צעיף בצבע מסוים..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                        <label>אין בחירת צבע כללי</label>
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 12 -->
+            <div class="product-card" data-id="12" data-name="סלסלה קטנה" data-price="100">
+                <img src="item12.jpg" alt="סלסלה קטנה" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">12. סלסלה קטנה</h2>
+                    <div class="product-price">₪100.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע בסיס:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>שילובי צבעים ובקשות עיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="רוצה שילוב צבעים? פרטי כאן (לדוגמה: שילוב של ורוד ולבן, פסים, צבע ידית שונה...)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+            <!-- מוצר 13 -->
+            <div class="product-card" data-id="13" data-name="סלסלה גדולה" data-price="150">
+                <img src="item13.jpg" alt="סלסלה גדולה" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">13. סלסלה גדולה</h2>
+                    <div class="product-price">₪150.00</div>
+                    <div class="form-group">
+                        <label>בחרי צבע בסיס:</label>
+                        <select class="prod-color">
+                            <option value="אדום">אדום 🔴</option>
+                            <option value="כתום">כתום 🟠</option>
+                            <option value="צהוב">צהוב 🟡</option>
+                            <option value="ירוק">ירוק 🟢</option>
+                            <option value="כחול">כחול 🔵</option>
+                            <option value="סגול">סגול 🟣</option>
+                            <option value="ורוד">ורוד 🌸</option>
+                            <option value="לבן">לבן 🤍</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>שילובי צבעים ובקשות עיצוב (אופציונלי):</label>
+                        <textarea class="prod-notes" placeholder="רוצה שילוב צבעים? פרטי כאן (לדוגמה: שילוב של ורוד ולבן, פסים, צבע ידית שונה...)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>כמות:</label>
+                        <input type="number" class="prod-qty" value="1" min="1" max="10">
+                    </div>
+                    <button type="button" class="btn-order" onclick="addToCart(this)">הוסיפי לסל הקניות 🛍️</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- רכיב עגלת הקניות המרוכזת -->
+        <div class="cart-section" id="cart-section">
+            <h2>סל הקניות שלך 🛒</h2>
+            
+            <!-- תיבת הסבר קבועה ומעוצבת על תהליך התשלום והמשלוח -->
+            <div class="payment-notice" id="payment-notice" style="display: none;">
+                <strong>💡 איך מתבצע התשלום?</strong><br>
+                לאחר שליחת ההזמנה, אצור איתך קשר בהקדם בפרטי ההתקשרות שהשארת לתיאום התשלום (בביט / פייבוקס) ופרטי המשלוח.
+            </div>
+
+            <div id="cart-items-container">
+                <p class="empty-cart-msg">סל הקניות ריק. הוסיפי פריטים מהחנות למעלה! ✨</p>
+            </div>
+            
+            <div class="cart-total" id="cart-total-price" style="display: none;">
+                סך הכל לתשלום: ₪0
+            </div>
+
+            <!-- טופס שליחה מרכזי יחיד ישיר ל-Formspree -->
+            <form id="checkout-form" class="checkout-form" action="https://formspree.io/f/mgojelbg" method="POST" style="display: none;">
+                <input type="hidden" name="פירוט ההזמנה המלא" id="hidden-cart-data">
+                <input type="hidden" name="סך הכל לתשלום" id="hidden-total-price">
+
+                <h3>פרטי התקשרות ומשלוח:</h3>
+                <div class="form-group">
+                    <label>שם מלא:</label>
+                    <input type="text" id="customer-name" name="שם הלקוח" required placeholder="הקלידי שם מלא">
+                </div>
+                <div class="form-group">
+                    <label>כתובת אימייל:</label>
+                    <input type="email" id="customer-email" name="אימייל הלקוח" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label>מספר טלפון:</label>
+                    <input type="text" id="customer-phone" name="טלפון" required placeholder="05X-XXXXXXX">
+                </div>
+
+                <!-- כפתור שליחה ברור ומעוצב שמופיע בתוך הטופס היחיד -->
+                <button type="submit" class="btn-order" style="background-color: var(--dark-pink); margin-top: 1.5rem;">
+                    שלחי הזמנה מרוכזת למייל 🌸
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© כל הזכויות שמורות ל-eliana._crochet.love | נעשה באהבה גדולה חוט אחר חוט</p>
+    </footer>
+
+    <!-- קוד JavaScript לניהול הסל הדינמי -->
+    <script>
+        let cart = [];
+
+        function addToCart(button) {
+            const card = button.closest('.product-card');
+            const id = card.getAttribute('data-id');
+            const name = card.getAttribute('data-name');
+            const price = parseInt(card.getAttribute('data-price'));
+            
+            const colorSelect = card.querySelector('.prod-color');
+            const color = colorSelect ? colorSelect.value : 'צבע קבוע';
+            
+            // איסוף הטקסט מתיבת הבקשות המיוחדות
+            const notesInput = card.querySelector('.prod-notes');
+            const notes = notesInput && notesInput.value.trim() !== "" ? notesInput.value.trim() : 'אין בקשות מיוחדות';
+            
+            const qtyInput = card.querySelector('.prod-qty');
+            const quantity = qtyInput ? parseInt(qtyInput.value) : 1;
+            
+            // מפתח פריט ייחודי שמשלב גם את הצבע וגם את הבקשה המיוחדת כדי שלא יתמזגו בטעות פריטים בעיצוב שונה
+            const itemKey = id + '_' + color + '_' + btoa(unescape(encodeURIComponent(notes)));
+            const existingItem = cart.find(item => item.key === itemKey);
+
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    key: itemKey,
+                    id: id,
+                    name: name,
+                    price: price,
+                    color: color,
+                    notes: notes,
+                    quantity: quantity
+                });
+            }
+
+            // איפוס השדות לאחר ההוספה
+            if (qtyInput) qtyInput.value = 1;
+            if (notesInput) notesInput.value = '';
+            
+            updateCartUI();
+
+            document.getElementById('cart-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function changeQuantity(key, delta) {
+            const item = cart.find(item => item.key === key);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeFromCart(key);
+                    return;
+                }
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(key) {
+            cart = cart.filter(item => item.key !== key);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const totalPriceElement = document.getElementById('cart-total-price');
+            const checkoutForm = document.getElementById('checkout-form');
+            const paymentNotice = document.getElementById('payment-notice');
+            const hiddenCartData = document.getElementById('hidden-cart-data');
+            const hiddenTotalPrice = document.getElementById('hidden-total-price');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="empty-cart-msg">סל הקניות ריק. הוסיפי פריטים מהחנות למעלה! ✨</p>';
+                totalPriceElement.style.display = 'none';
+                checkoutForm.style.display = 'none';
+                paymentNotice.style.display = 'none';
+                return;
+            }
+
+            container.innerHTML = '';
+            let total = 0;
+            let emailSummary = '';
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                // הוספת הבקשות המיוחדות לסיכום המייל
+                emailSummary += `• ${item.name} (צבע כללי: ${item.color}) - כמות: ${item.quantity} - בקשות עיצוב: ${item.notes} - מחיר: ₪${itemTotal}\n`;
+
+                const itemHTML = `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-meta">צבע: ${item.color}</div>
+                            <div class="cart-item-meta" style="font-style: italic; color: #666;">בקשות מיוחדות: ${item.notes}</div>
+                            <div class="cart-item-meta" style="font-weight:bold; color:var(--dark-pink); margin-top: 0.3rem;">₪${item.price} ליחידה</div>
+                        </div>
+                        <div class="cart-controls">
+                            <button type="button" class="btn-qty" onclick="changeQuantity('${item.key}', -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button type="button" class="btn-qty" onclick="changeQuantity('${item.key}', 1)">+</button>
+                            <button type="button" class="btn-remove" onclick="removeFromCart('${item.key}')">הסר</button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += itemHTML;
+            });
+
+            totalPriceElement.innerText = `סך הכל לתשלום: ₪${total}.00`;
+            totalPriceElement.style.display = 'block';
+
+            hiddenCartData.value = emailSummary;
+            hiddenTotalPrice.value = `₪${total}.00`;
+
+            checkoutForm.style.display = 'block';
+            paymentNotice.style.display = 'block';
+        }
+
+        // האזנה לשליחת הטופס - מציג קופץ חגיגי ומאפס את הסל
+        document.getElementById('checkout-form').addEventListener('submit', function() {
+            alert('ההזמנה שלך נשלחה בהצלחה! 🌸\nפרטי ההזמנה הועברו לאליאנה, ניצור איתך קשר בהקדם לתיאום תשלום ומשלוח.');
+            
+            // שימוש בטיימאאוט קצר כדי לתת לטופס לשלוח את המידע ל-Formspree לפני שהסל מתאפס
+            setTimeout(function() {
+                cart = [];
+                updateCartUI();
+                document.getElementById('checkout-form').reset();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
